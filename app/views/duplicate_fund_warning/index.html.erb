@@ -1,0 +1,28 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Duplicate fund warnings</h1>
+
+<div id="duplicate_fund_warnings">
+  <% if @duplicate_fund_warnings.blank? %>
+    <p>No duplicate fund warnings</p>
+  <% else %>
+    <table>
+      <tr>
+        <th>Message</th>
+        <th>Fund 1 name</th>
+        <th>Fund 2 name</th>
+        <th>Actions</th>
+      </tr>
+      <% @duplicate_fund_warnings.each do |duplicate_fund_warning| %>
+        <tr>
+          <td>Potential duplicated fund</td>
+          <td><%= Fund.find(duplicate_fund_warning.fund_id_1).name %></td>
+          <td><%= Fund.find(duplicate_fund_warning.fund_id_2).name %></td>
+          <td><%= button_to "Resolve", duplicate_fund_warning, method: :delete %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>
+
+<%= link_to "Home", root_path %>

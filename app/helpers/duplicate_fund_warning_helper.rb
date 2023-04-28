@@ -1,0 +1,2 @@
+module DuplicateFundWarningHelper
+end
