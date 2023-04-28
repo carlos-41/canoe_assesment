@@ -1,0 +1,30 @@
+<%= form_with(model: fund_manager) do |form| %>
+  <% if fund_manager.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(fund_manager.errors.count, "error") %> prohibited this fund_manager from being saved:</h2>
+
+      <ul>
+        <% fund_manager.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table>
+    <tr>
+      <td><%= form.label :name, style: "display: block" %></td>
+      <td><%= form.text_field :name %></td>
+    </tr>
+    <tr>
+      <td><%= form.label :company, style: "display: block" %></td>
+      <td>
+        <%= form.select :company_id, options_for_select(Company.all.pluck(:name,:id) , fund_manager.company_id), { include_blank: true } %>
+      </td>
+    </tr>
+  </table>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,27 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Fund managers</h1>
+
+<div id="fund_managers">
+  <% if @fund_managers.blank? %>
+    <p>No fund managers</p>
+  <% else %>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th colspan="2">Actions</th>
+      </tr>
+      <% @fund_managers.each do |fund_manager| %>
+        <tr>
+          <td><%= fund_manager.name %></td>
+          <td><%= link_to "Edit", edit_fund_manager_path(fund_manager) %></td>
+          <td><%= button_to "Destroy", fund_manager, method: :delete %></td>
+        </tr>
+      <% end %>
+    </table>
+    
+  <% end %>
+</div>
+
+<%= link_to "Home", root_path %>
+<%= link_to "New fund manager", new_fund_manager_path %>
