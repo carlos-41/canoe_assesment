@@ -1,0 +1,2 @@
+class DuplicateFundWarning < ApplicationRecord
+end
