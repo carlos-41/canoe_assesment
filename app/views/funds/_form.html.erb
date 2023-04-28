@@ -1,0 +1,38 @@
+<%= form_with(model: fund) do |form| %>
+  <% if fund.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(fund.errors.count, "error") %> prohibited this fund from being saved:</h2>
+
+      <ul>
+        <% fund.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table>
+    <tr>
+      <td><%= form.label :name, style: "display: block" %></td>
+      <td><%= form.text_field :name %></td>
+    </tr>
+    <tr>
+      <td><%= form.label :start_year, style: "display: block" %></td>
+      <td><%= form.text_field :start_year %></td>
+    </tr>
+    <tr>
+      <td><label style="display: block" for="fund_aliases">Aliases(separated with commas)</label></td>
+      <td><%= form.text_field :aliases %></td>
+    </tr>
+    <tr>
+      <td><%= form.label :fund_manager, style: "display: block" %></td>
+      <td>
+        <%= form.select :fund_manager_id, options_for_select(FundManager.all.pluck(:name,:id) , fund.fund_manager_id), { include_blank: true } %>
+      </td>
+    </tr>
+  </table>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

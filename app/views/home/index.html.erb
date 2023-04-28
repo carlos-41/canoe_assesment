@@ -1,3 +1,29 @@
-<h1>Fund Management</h1>
-<%= link_to "List of companies", companies_path %>
-<%= link_to "List of fund managers", fund_managers_path %>
+<h1>Funds</h1>
+<% if Fund.count == 0 %>
+  <p>No Funds</p>
+<% else %>
+  <table>
+    <tr>
+      <th>Fund Name</th>
+      <th>Start Year</th>
+      <th>Aliases</th>
+      <th>Fund Manager</th>
+    </tr>
+    <% Fund.all.each do |fund| %>
+      <tr>
+        <td><%= fund.name %></td>
+        <td><%= fund.start_year %></td>
+        <td><%= fund.aliases %></td>
+        <td><%= fund.fund_manager.name %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+<table>
+  <tr>
+    <td><%= link_to "List of companies", companies_path %></td>
+    <td><%= link_to "List of fund managers", fund_managers_path %></td>
+    <td><%= link_to "List of funds", funds_path %></td>
+  </tr>
+</table>
+

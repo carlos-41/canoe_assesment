@@ -1,0 +1,31 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Funds</h1>
+
+<div id="funds">
+  <% if @funds.blank? %>
+    <p>No funds</p>
+  <% else %>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Start year</th>
+        <th>Aliases</th>
+        <th colspan="2">Actions</th>
+      </tr>
+      <% @funds.each do |fund| %>
+        <tr>
+          <td><%= fund.name %></td>
+          <td><%= fund.start_year %></td>
+          <td><%= fund.aliases %></td>
+          <td><%= link_to "Edit", edit_fund_path(fund) %></td>
+          <td><%= button_to "Destroy", fund, method: :delete %></td>
+        </tr>
+      <% end %>
+    </table>
+    
+  <% end %>
+</div>
+
+<%= link_to "Home", root_path %>
+<%= link_to "New fund", new_fund_path %>
